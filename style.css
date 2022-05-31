@@ -1,3 +1,7 @@
-.task__name_edit{
+.task__name_visible{
   display: none;
+}
+
+.task__name_checked{
+  text-decoration: line-through;
 }

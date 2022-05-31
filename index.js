@@ -7,10 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const createTaskTemolate = ({id, name, flag}) => {
     const TASK = `
-      <li class="task" id="${id}">
-          <input type="checkbox" class="task__complete" ${ flag ? 'checked' : '' }>
-          <label class="task__name">${name}</label>
-          <input type="text" name="task" class="task__name task__name_edit" value="${name}">
+    <li class="task" id="${id}">
+          <input type="checkbox" class="task__flag" ${ flag ? 'checked' : '' }>
+          <label class="task__name ${flag ? 'task__name_checked' : ''}">${name}</label>
+          <input type="text" name="task" class="task__name task__name_visible" value="${name}">
           <button class="btn btn__edit">Edit</button>
           <button class="btn btn__remove">Remove</button>
       </li>
@@ -40,6 +40,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }  
 
+  const editAndSaveTask = (e) => {
+    if(e.target.classList.contains('btn__save') || e.target.classList.contains('btn__edit')){
+      const BTN = e.target
+      const TASK = e.target.parentNode
+      const INPUT = nodeSearch(TASK.childNodes, 'INPUT', 'task__name')
+      const LABEL= nodeSearch(TASK.childNodes, 'LABEL', 'task__name')
+      console.log(TASK.childNodes);
+      console.log(INPUT);
+      console.log(LABEL);
+
+      BTN.classList.toggle('btn__edit')
+      BTN.classList.toggle('btn__save')
+
+      INPUT.classList.toggle('task__name_visible')
+      LABEL.classList.toggle('task__name_visible')
+      LABEL.innerText = INPUT.value
+
+      tasks.map(task => task.id == TASK.id ? task.name = INPUT.value : '')
+      updateTasksToLocalStorage()
+
+      BTN.innerHTML === 'Edit' ? BTN.innerHTML = 'Save' : BTN.innerHTML = 'Edit'
+    }
+  }
+
+  const completeTask = (e) => {
+    if(e.target.classList.contains('task__flag')){
+      const TASK = e.target.parentNode
+      const LABEL = nodeSearch(TASK.childNodes, 'LABEL', 'task__name')
+      LABEL.classList.toggle('task__name_checked')
+
+      tasks.map(task => task.id == TASK.id ? task.flag = !task.flag : task.flag = task.flag)
+      updateTasksToLocalStorage()
+    }
+  }
+
   const nodeSearch = (nodeList, tag, className) => {
     let node
 
@@ -51,30 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     return node
-  }
-
-  const editAndSaveTask = (e) => {
-    if(e.target.classList.contains('btn__save') || e.target.classList.contains('btn__edit')){
-      const BTN = e.target
-      const TASK = e.target.parentNode
-      const INPUT = nodeSearch(TASK.childNodes, 'INPUT', 'task__name')
-      const LABEL= nodeSearch(TASK.childNodes, 'LABEL', 'task__name')
-
-      console.log(INPUT);
-      console.log(LABEL);
-
-      BTN.classList.toggle('btn__edit')
-      BTN.classList.toggle('btn__save')
-
-      INPUT.classList.toggle('task__name_edit')
-      LABEL.classList.toggle('task__name_edit')
-      LABEL.innerText = INPUT.value
-
-      tasks.map(task => task.id == TASK.id ? task.name = INPUT.value : '')
-      updateTasksToLocalStorage()
-
-      BTN.innerHTML === 'Edit' ? BTN.innerHTML = 'Save' : BTN.innerHTML = 'Edit'
-    }
   }
 
   const updateTasksToLocalStorage = () => {
@@ -92,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   checkTasks()
   BTN_ADD.addEventListener('click', addTask)
-  const EVENTS = [removeTask, editAndSaveTask]
+  const EVENTS = [removeTask, editAndSaveTask, completeTask]
   EVENTS.forEach(event => {
     document.addEventListener('click', event)
   })
