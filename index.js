@@ -32,8 +32,23 @@ document.addEventListener('DOMContentLoaded', () => {
     ADD_INPUT.value = ''
     createTaskTemolate(task)
     tasks.push(task)
+    addTasksToLocalStorage()
   }
 
+  const addTasksToLocalStorage = () => {
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+  }
+
+  const checkTasks = () => {
+    if(localStorage.getItem('tasks')){
+      tasks = JSON.parse(localStorage.getItem('tasks'))
+      tasks.forEach(task => {
+        createTaskTemolate(task)
+      });
+    }
+  }
+
+  checkTasks()
   BTN_ADD.addEventListener('click', addTask)
   document.addEventListener('click', (e) => {
     if( e.target.classList.contains('btn__remove')){
