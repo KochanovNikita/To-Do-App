@@ -45,6 +45,10 @@ ul{
   left: 2px;
 }
 
+.btn__swap{
+  width: 116px;
+}
+
 input[type="text"]{
   padding: 7px 14px;
   outline: none;
@@ -191,7 +195,7 @@ input:checked + .task__flag_active {
 .select select{
   background: none;
   border: 1px solid var(--first-color);
-  width: 98%;
+  width: 99.5%;
   padding: 10px 20px;
   margin-top: 20px;
   -moz-appearance: none;
