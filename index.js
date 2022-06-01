@@ -49,9 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const removeTask = (e) => {
     if(e.target.classList.contains('btn__remove')){
       const TASK = e.target.parentNode
-      TASKS_LIST.removeChild(TASK)
       tasks = tasks.filter(task => task.id != TASK.id)
       updateTasksToLocalStorage()
+      TASK.classList.add('task__animation_remove')
     }
   }  
 
@@ -136,6 +136,17 @@ document.addEventListener('DOMContentLoaded', () => {
     isActiveTasks = !isActiveTasks
   }
 
+  const animationTasks = (e) => {
+    const TASK = e.target
+    if(TASK.classList.contains('task__animation_remove')){
+      TASK.classList.remove('task__animation_remove')
+      TASK.parentNode.removeChild(TASK)
+    }
+    if(TASK.classList.contains('task__animation_add')){
+      TASK.classList.remove('task__animation_add')
+    }
+  }
+
   checkTasks()
   BTN_ADD.addEventListener('click', addTask)
   BTN_SWAP.addEventListener('click', swapTasksList)
@@ -143,4 +154,5 @@ document.addEventListener('DOMContentLoaded', () => {
   EVENTS.forEach(event => {
     document.addEventListener('click', event)
   })
+  document.addEventListener('animationend', animationTasks)
 });
