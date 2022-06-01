@@ -9,23 +9,23 @@
 </head>
 <body>
     <div class="wrapper">
-        <header class="header">
-            <h3 class="title">Add To-Do</h3>
-            <input type="text" class="header__task">
-            <button class="btn btn__add">ADD</button>
-        </header>
-        <main class="main">
-            <h3 class="title">To-Do </h3>
-            <ul class="list">
-                <li class="task">
-                    <input type="checkbox" class="task__complete">
-                    <label class="task__name"></label>
-                    <input type="text"  name="task" class="task__name task__name_edit">
-                    <button class="btn btn__edit">Edit</button>
-                    <button class="btn btn__remove">Remove</button>
-                </li>
-            </ul>
-        </main>
+        <div class="wrapper__content">
+            <header class="header">
+                <h3 class="title">Add To-Do</h3>
+                <input type="text" placeholder="write to-do" class="header__task">
+                <button class="btn btn__add">ADD</button>
+                <button class="btn btn__swap">Complete</button>
+            </header>
+            <main class="main">
+                <h3 class="title">To-Do </h3>
+                <ul class="list" id="tasks">
+                     
+                </ul>
+                <ul class="list list__complete list__disable" id="completeTasks">
+        
+                </ul>
+            </main>
+        </div>
     </div>
     <script src="index.js"></script>
 </body>

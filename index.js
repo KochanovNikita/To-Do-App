@@ -1,13 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
   const BTN_ADD = document.querySelector('.btn__add')
   const ADD_INPUT = document.querySelector('.header__task')
-  const TASKS_LIST = document.querySelector('.list')
+  const TASKS_LIST = document.querySelector('#tasks')
+  const TASKS_COMPLETE_LIST = document.querySelector('#completeTasks')
+  const BTN_SWAP = document.querySelector('.btn__swap')
 
   let tasks = []
+  let isActiveTasks = true
 
   const createTaskTemolate = ({id, name, flag}) => {
     const TASK = `
-    <li class="task" id="${id}">
+    <li class="task task__animation_add" id="${id}">
           <input type="checkbox" class="task__flag" ${ flag ? 'checked' : '' }>
           <label class="task__name ${flag ? 'task__name_checked' : ''}">${name}</label>
           <input type="text" name="task" class="task__name task__name_visible" value="${name}">
@@ -15,20 +18,32 @@ document.addEventListener('DOMContentLoaded', () => {
           <button class="btn btn__remove">Remove</button>
       </li>
     `
-    TASKS_LIST.innerHTML = TASK + TASKS_LIST.innerHTML
+//TODO: add complete-tasks-list
+    if(!flag){
+      TASKS_LIST.innerHTML = TASK + TASKS_LIST.innerHTML
+    }else{
+      TASKS_COMPLETE_LIST.innerHTML = TASK + TASKS_COMPLETE_LIST.innerHTML
+    }
+    
   }
 
   const addTask = () => {
-    const task = {
-      id: Date.now(),
-      name: ADD_INPUT.value,
-      flag: false
+    let value = ADD_INPUT.value.trim()
+    if(value.length > 0 ){
+      const task = {
+        id: Date.now(),
+        name: value,
+        flag: false
+      }
+      
+      createTaskTemolate(task)
+      ADD_INPUT.setAttribute('placeholder', 'write to-do');
+      tasks.push(task)
+      updateTasksToLocalStorage()
+    }else{
+      ADD_INPUT.setAttribute('placeholder', 'task dont be empty');
     }
-
     ADD_INPUT.value = ''
-    createTaskTemolate(task)
-    tasks.push(task)
-    updateTasksToLocalStorage()
   }
 
   const removeTask = (e) => {
@@ -46,9 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const TASK = e.target.parentNode
       const INPUT = nodeSearch(TASK.childNodes, 'INPUT', 'task__name')
       const LABEL= nodeSearch(TASK.childNodes, 'LABEL', 'task__name')
-      console.log(TASK.childNodes);
-      console.log(INPUT);
-      console.log(LABEL);
 
       BTN.classList.toggle('btn__edit')
       BTN.classList.toggle('btn__save')
@@ -67,24 +79,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const completeTask = (e) => {
     if(e.target.classList.contains('task__flag')){
       const TASK = e.target.parentNode
+
       const LABEL = nodeSearch(TASK.childNodes, 'LABEL', 'task__name')
       LABEL.classList.toggle('task__name_checked')
 
       tasks.map(task => task.id == TASK.id ? task.flag = !task.flag : task.flag = task.flag)
+
+      tasks.forEach(({id, name, flag}) => {
+        if (id == TASK.id) {
+          createTaskTemolate({id, name, flag})
+        }
+      })
+
       updateTasksToLocalStorage()
+
+      TASK.classList.add('task__animation_remove')
     }
   }
 
   const nodeSearch = (nodeList, tag, className) => {
     let node
-
     nodeList.forEach(currentNode => {
       if(currentNode.tagName == tag && currentNode.classList.contains(className)){
         node = currentNode
       }
-
     });
-
     return node
   }
 
@@ -101,8 +120,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const swapTasksList = () => {
+    const TITLE = document.querySelectorAll('.title')[1]
+    TASKS_LIST.classList.toggle('list__disable')
+    TASKS_COMPLETE_LIST.classList.toggle('list__disable')
+    if(isActiveTasks){
+      BTN_SWAP.innerText = 'Active'
+      TITLE.innerText = 'Completed Tasks'
+      
+    }else{
+      BTN_SWAP.innerText = 'Complete'
+      TITLE.innerText = 'To-Do'
+    }
+
+    isActiveTasks = !isActiveTasks
+  }
+
   checkTasks()
   BTN_ADD.addEventListener('click', addTask)
+  BTN_SWAP.addEventListener('click', swapTasksList)
   const EVENTS = [removeTask, editAndSaveTask, completeTask]
   EVENTS.forEach(event => {
     document.addEventListener('click', event)

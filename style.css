@@ -1,3 +1,143 @@
+*{
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+}
+
+ul{
+  list-style: none;
+}
+
+.title{
+  font-size: 24px;
+  text-align: center;
+  margin: 30px 0;
+  color: #4d648d;
+}
+
+.btn{
+  position: relative;
+  font-size: 16px;
+  margin-left: 10px;
+  padding:  8px 14px;
+  border: 1px solid #283655;
+  border-radius: 3px;
+  background-color: #4d648d;
+  color: #d0e1f9;
+  /*background-color: rgba(240, 248, 255, 0.748); */
+}
+
+.btn:hover{
+  background-color: #283655;
+}
+
+.btn:active{
+  top: 2px;
+  left: 2px;
+}
+
+input[type="text"]{
+  padding: 7px 14px;
+  outline: none;
+  border-radius: 3px;
+  border: none;
+  color: #283655;
+  font-weight: 400;
+}
+
+.wrapper{
+  height: 100vh;
+  background: #d0e1f9;
+  /*background: rgb(212, 253, 255);
+  /*background: linear-gradient(60deg, rgb(150, 198, 239), rgba(70, 166, 166, .6));*/
+}
+
+.wrapper .wrapper__content{
+  max-height: 100vh;
+  max-width: 600px;
+  padding: 10px 60px;
+  margin: 0 auto;
+}
+
+.header{
+  padding: 10px 0 15px 0;
+}
+
+.header .header__task{
+  width: 60%;
+}
+
+.list{
+  height: 370px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.list::-webkit-scrollbar{
+  background-color: #4d648d;
+  border-radius: 8px;
+  width: 8px;
+  overflow: hidden;
+}
+
+.list::-webkit-scrollbar-thumb{
+  background-color: #283655;
+  border-radius: 8px;
+}
+
+.list.list__disable{
+  display: none;
+}
+
+.list .task{
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 0px 10px #1e1f26;
+  width: 90%;
+  margin: 15px auto;
+  border-radius: 3px;
+  transform: translateX(0px);
+}
+
+.list .task .task__name{
+  padding: 5px 14px;
+  color: #283655;
+  font-weight: 400;
+  width: 56%;
+  word-wrap: break-word;
+  border: none;
+}
+
+@keyframes move-right {
+  0%{
+    transform: translateX(0px);
+  }
+  100%{
+    transform: translateX(110%);
+  }
+}
+
+@keyframes move-left {
+  0%{
+    transform: translateX(110%);
+  }
+  100%{
+    transform: translateX(0);
+  }
+}
+
+.task__animation_remove{
+  animation: move-right 1.7s;
+}
+
+.task__animation_add{
+  animation: move-left 1.7s;
+}
+
 .task__name_visible{
   display: none;
 }
