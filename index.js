@@ -11,14 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const createTaskTemolate = ({id, name, flag}) => {
     const TASK = `
     <li class="task task__animation_add" id="${id}">
-          <input type="checkbox" class="task__flag" ${ flag ? 'checked' : '' }>
-          <label class="task__name ${flag ? 'task__name_checked' : ''}">${name}</label>
+          <label class="task__flag_visible">
+            <input type="checkbox" class="task__flag" ${ flag ? 'checked' : '' } id="check-${id}">
+            <div class="task__flag_active"></div>
+          </label>
+          <label class="task__name ${flag ? 'task__name_checked' : ''}"> 
+            ${name}
+          </label>
           <input type="text" name="task" class="task__name task__name_visible" value="${name}">
           <button class="btn btn__edit">Edit</button>
           <button class="btn btn__remove">Remove</button>
       </li>
     `
-//TODO: add complete-tasks-list
+
     if(!flag){
       TASKS_LIST.innerHTML = TASK + TASKS_LIST.innerHTML
     }else{
@@ -78,9 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const completeTask = (e) => {
     if(e.target.classList.contains('task__flag')){
-      const TASK = e.target.parentNode
-
-      const LABEL = nodeSearch(TASK.childNodes, 'LABEL', 'task__name')
+      const LABEL = e.target.parentNode
+      const TASK = LABEL.parentNode
       LABEL.classList.toggle('task__name_checked')
 
       tasks.map(task => task.id == TASK.id ? task.flag = !task.flag : task.flag = task.flag)
