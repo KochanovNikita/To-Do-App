@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let tasks = []
   let isActiveTasks = true
+  let selectTheme
 
   const createTaskTemolate = ({id, name, flag}, className) => {
     const TASK = `
@@ -154,11 +155,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const selectTheme = () => {
-    THEME_LINK.href = SELECT.value
+  const setSelectTheme = () => {
+    selectTheme = SELECT.value
+    THEME_LINK.href = selectTheme
+    localStorage.setItem('select', selectTheme)
+  }
+
+  const getTheme = () => {
+    if(localStorage.getItem('select')){
+      THEME_LINK.href = localStorage.getItem('select')
+      SELECT.value = localStorage.getItem('select')
+    }
   }
 
   checkTasks()
+  getTheme()
   BTN_ADD.addEventListener('click', addTask)
   BTN_SWAP.addEventListener('click', swapTasksList)
   const EVENTS = [removeTask, editAndSaveTask, completeTask]
@@ -166,5 +177,5 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', event)
   })
   document.addEventListener('animationend', animationTasks)
-  SELECT.addEventListener('change', selectTheme)
+  SELECT.addEventListener('change', setSelectTheme)
 });
