@@ -4,13 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const TASKS_LIST = document.querySelector('#tasks')
   const TASKS_COMPLETE_LIST = document.querySelector('#completeTasks')
   const BTN_SWAP = document.querySelector('.btn__swap')
+  const ANIMATION_ADD = 'task__animation_add'
+  const SELECT = document.querySelector('select')
+  const THEME_LINK = document.querySelectorAll('link')[1]
 
   let tasks = []
   let isActiveTasks = true
 
-  const createTaskTemolate = ({id, name, flag}) => {
+  const createTaskTemolate = ({id, name, flag}, className) => {
     const TASK = `
-    <li class="task task__animation_add" id="${id}">
+    <li class="task ${className ? className : ''}" id="${id}">
           <label class="task__flag_visible">
             <input type="checkbox" class="task__flag" ${ flag ? 'checked' : '' } id="check-${id}">
             <span class="task__flag_active"></span>
@@ -41,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         flag: false
       }
       
-      createTaskTemolate(task)
+      createTaskTemolate(task, ANIMATION_ADD)
       ADD_INPUT.setAttribute('placeholder', 'write to-do');
       tasks.push(task)
       updateTasksToLocalStorage()
@@ -91,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       tasks.forEach(({id, name, flag}) => {
         if (id == TASK.id) {
-          createTaskTemolate({id, name, flag})
+          createTaskTemolate({id, name, flag}, ANIMATION_ADD)
         }
       })
 
@@ -151,6 +154,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const selectTheme = () => {
+    THEME_LINK.href = SELECT.value
+  }
+
   checkTasks()
   BTN_ADD.addEventListener('click', addTask)
   BTN_SWAP.addEventListener('click', swapTasksList)
@@ -159,4 +166,5 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', event)
   })
   document.addEventListener('animationend', animationTasks)
+  SELECT.addEventListener('change', selectTheme)
 });

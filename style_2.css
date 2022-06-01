@@ -11,12 +11,13 @@
 
 .btn{
   position: relative;
-  border: 1px solid var(--third-color);
+  border: 1px solid var(--first-color);
   background-color: var( --first-color);
   color: var(--fourth-color);
 }
 
 .btn:hover{
+  border: 1px solid var(--third-color);
   background-color: var(--third-color);
 }
 

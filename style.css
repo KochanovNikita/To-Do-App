@@ -169,11 +169,11 @@ input:checked + .task__flag_active {
 }
 
 .task__animation_remove {
-  animation: move-right 1.7s;
+  animation: move-right .9s;
 }
 
 .task__animation_add {
-  animation: move-left 1.7s;
+  animation: move-left .9s;
 }
 
 .task__name_visible {
@@ -183,3 +183,36 @@ input:checked + .task__flag_active {
 .task__name_checked {
   text-decoration: line-through;
 }
+
+.select{
+  position: relative;
+}
+
+.select select{
+  background: none;
+  border: 1px solid var(--first-color);
+  width: 98%;
+  padding: 10px 20px;
+  margin-top: 20px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  color: var(--first-color);
+  cursor: pointer;
+  background-color: var(--fourth-color);
+  font-size: 20px;
+}
+
+.select::after{
+  content: "";
+  display: block;
+  border-style: solid;
+  border-width: 15px 10px 0 10px;
+  border-color: var(--first-color) transparent transparent transparent;
+  position: absolute;
+  top: 55%;
+  right: 40px;
+  cursor: pointer;
+}
+
