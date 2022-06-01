@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <li class="task task__animation_add" id="${id}">
           <label class="task__flag_visible">
             <input type="checkbox" class="task__flag" ${ flag ? 'checked' : '' } id="check-${id}">
-            <div class="task__flag_active"></div>
+            <span class="task__flag_active"></span>
           </label>
           <label class="task__name ${flag ? 'task__name_checked' : ''}"> 
             ${name}
@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
     `
 
     if(!flag){
-      TASKS_LIST.innerHTML = TASK + TASKS_LIST.innerHTML
+      TASKS_LIST.innerHTML += TASK
     }else{
-      TASKS_COMPLETE_LIST.innerHTML = TASK + TASKS_COMPLETE_LIST.innerHTML
+      TASKS_COMPLETE_LIST.innerHTML += TASK
     }
     
   }
@@ -129,12 +129,12 @@ document.addEventListener('DOMContentLoaded', () => {
     TASKS_LIST.classList.toggle('list__disable')
     TASKS_COMPLETE_LIST.classList.toggle('list__disable')
     if(isActiveTasks){
-      BTN_SWAP.innerText = 'Active'
+      BTN_SWAP.innerText = 'Active ToDo'
       TITLE.innerText = 'Completed Tasks'
       
     }else{
-      BTN_SWAP.innerText = 'Complete'
-      TITLE.innerText = 'To-Do'
+      BTN_SWAP.innerText = 'Completed'
+      TITLE.innerText = 'Active ToDo'
     }
 
     isActiveTasks = !isActiveTasks

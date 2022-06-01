@@ -33,7 +33,7 @@ ul{
   border-radius: 3px;
   background-color: var( --first-color);
   color: var(--fourth-color);
-  /*background-color: rgba(240, 248, 255, 0.748); */
+  cursor: pointer;
 }
 
 .btn:hover{
@@ -69,7 +69,7 @@ input[type="text"]{
 }
 
 .header{
-  padding: 10px 0 15px 0;
+  padding: 10px 0 15px 15px;
 }
 
 .header .header__task{
@@ -87,6 +87,7 @@ input[type="text"]{
   border-radius: 8px;
   width: 8px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .list::-webkit-scrollbar-thumb{
@@ -105,7 +106,7 @@ input[type="text"]{
   align-items: center;
   box-shadow: 0px 0px 14px -3px var(--second-color);
   width: 90%;
-  margin: 25px auto;
+  margin: 25px 15px;
   border-radius: 3px;
   transform: translateX(0px);
 }
@@ -131,7 +132,7 @@ input[type="text"]{
   width: 18px;
   height: 18px;
   border: 1px solid var(--third-color);
- 
+  cursor: pointer;
 }
 
 .task .task__flag_active {
@@ -154,13 +155,13 @@ input:checked + .task__flag_active {
     transform: translateX(0px);
   }
   100%{
-    transform: translateX(110%);
+    transform: translateX(105%);
   }
 }
 
 @keyframes move-left {
   0%{
-    transform: translateX(110%);
+    transform: translateX(100%);
   }
   100%{
     transform: translateX(0);

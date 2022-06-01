@@ -1,0 +1,55 @@
+:root{
+  --first-color: #b38867;
+  --second-color: #b38867;
+  --third-color: #ddbc95;
+  --fourth-color: #cdcdc0;
+}
+
+.title{
+  color: var( --first-color);
+}
+
+.btn{
+  border: none;
+  background-color: var( --first-color);
+  color: var(--fourth-color);
+}
+
+.btn:hover{
+  background-color: var(--third-color);
+}
+
+input[type="text"]{
+  color: var(--second-color);
+}
+
+.wrapper{
+  background: var(--fourth-color);
+}
+
+.list::-webkit-scrollbar{
+  background-color: var( --third-color);
+}
+
+.list::-webkit-scrollbar-thumb{
+  background-color: var(--first-color);
+}
+
+
+.task{
+  box-shadow: 0px 0px 10px var(--second-color);
+}
+
+.task .task__name {
+  color: var(--second-color);
+}
+
+.task .task__flag_visible {
+  border: 1px solid var(--first-color);
+ 
+}
+
+.task .task__flag_active {
+  background-color: var(--first-color);
+}
+
