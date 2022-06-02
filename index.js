@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const BTN_ADD = document.querySelector('.btn__add'); 
-  const ADD_INPUT = document.querySelector('.header__task'); 
+  const BTN_ADD = document.querySelector('.btn__add');
+  const ADD_INPUT = document.querySelector('.header__task');
   const TASKS_LIST = document.querySelector('#tasks');
-  const TASKS_COMPLETE_LIST = document.querySelector('#completeTasks'); 
+  const TASKS_COMPLETE_LIST = document.querySelector('#completeTasks');
   const BTN_SWAP = document.querySelector('.btn__swap');
   const ANIMATION_ADD = 'task__animation_add';
   const SELECT = document.querySelector('select');
-  const THEME_LINK = document.querySelectorAll('link')[1]; 
+  const THEME_LINK = document.querySelectorAll('link')[1];
   let tasks = [];
   let isActiveTasks = true;
   let selectTheme;
@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <input type="checkbox" class="task__flag" ${flag ? 'checked' : ''} id="check-${id}">
             <span class="task__flag_active"></span>
           </label>
-          <label class="task__name ${flag ? 'task__name_checked' : ''}"> 
+          <span class="task__name ${flag ? 'task__name_checked' : ''}"> 
             ${name}
-          </label>
+          </span>
           <input type="text" name="task" class="task__name task__name_visible" value="${name}">
           <button class="btn btn__edit">Edit</button>
           <button class="btn btn__remove">Remove</button>
@@ -67,14 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const BTN = e.target;
       const TASK = e.target.parentNode;
       const INPUT = nodeSearch(TASK.childNodes, 'INPUT', 'task__name');
-      const LABEL = nodeSearch(TASK.childNodes, 'LABEL', 'task__name');
+      const SPAN = nodeSearch(TASK.childNodes, 'SPAN', 'task__name');
 
       BTN.classList.toggle('btn__edit');
       BTN.classList.toggle('btn__save');
 
       INPUT.classList.toggle('task__name_visible');
-      LABEL.classList.toggle('task__name_visible');
-      LABEL.innerText = INPUT.value;
+      SPAN.classList.toggle('task__name_visible');
+      SPAN.innerText = INPUT.value;
 
       tasks.map((task) => (task.id == TASK.id ? task.name = INPUT.value : ''));
       updateTasksToLocalStorage();
@@ -87,8 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target.classList.contains('task__flag')) {
       const LABEL = e.target.parentNode;
       const TASK = LABEL.parentNode;
-      LABEL.classList.toggle('task__name_checked');
-
+      const SPAN = nodeSearch(TASK.childNodes, 'SPAN', 'task__name');
+      SPAN.classList.toggle('task__name_checked');
+     
       tasks.map((task) => (task.id == TASK.id ? task.flag = !task.flag : task.flag = task.flag));
 
       tasks.forEach(({ id, name, flag }) => {
