@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!flag) {
       TASKS_LIST.innerHTML += TASK;
     } else {
-      TASKS_COMPLETE_LIST.innerHTML += TASK;
+      TASKS_COMPLETE_LIST.innerHTML = TASK + TASKS_COMPLETE_LIST.innerHTML;
     }
   };
 
