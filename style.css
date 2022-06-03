@@ -178,11 +178,14 @@ input:checked + .task__flag_active {
 }
 
 .task__animation_remove {
-  animation: move-right .9s;
+  animation: move-right .9s linear .6s;
+  transition: transform .5s ease-in-out;
+  transform: scale(1.05);
 }
 
 .task__animation_add {
   animation: move-left .9s;
+  animation-delay: 2s;
 }
 
 .task__name_visible {

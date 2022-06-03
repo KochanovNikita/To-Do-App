@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const removeTask = (e) => {
     if (e.target.classList.contains('btn__remove')) {
       const TASK = e.target.parentNode;
+      e.target.disabled = true
       tasks = tasks.filter((task) => task.id != TASK.id);
       updateTasksToLocalStorage();
       TASK.classList.add('task__animation_remove');
