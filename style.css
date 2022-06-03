@@ -184,7 +184,7 @@ input:checked + .task__flag_active {
 }
 
 .task__animation_remove {
-  animation: move-right .9s linear .5s;
+  animation: move-right .9s;
 }
 
 .task__animation_add {
@@ -234,6 +234,7 @@ input:checked + .task__flag_active {
 }
 
 .select .select__option.select__option_change {
+  background-color: var(--fourth-color);
   display: block;
   opacity: 1;
 }
