@@ -51,7 +51,7 @@ ul{
 }
 
 .btn__swap{
-  width: 110px;
+  width: 116px;
 }
 
 input[type="text"]{
@@ -75,7 +75,7 @@ input[type="text"]{
 }
 
 .header .header__task{
-  width: 60%;
+  width: 58.86%;
 }
 
 .main{
@@ -114,7 +114,7 @@ input[type="text"]{
   align-items: center;
   box-shadow: 0px 0px 14px -3px var(--second-color);
   width: 94%;
-  margin: 25px auto;
+  margin: 5px auto 25px auto;
   border-radius: 3px;
   transform: translateX(0px);
   z-index: -1;
@@ -199,7 +199,7 @@ input:checked + .task__flag_active {
   position: relative;
   height: 20px;
   top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 28px;
 }
 
 .select .select__wrapper {
@@ -237,37 +237,3 @@ input:checked + .task__flag_active {
   color: var(--fourth-color);
   z-index: 5;
 }
-
-/*
-.select{
-  position: relative;
-}
-
-.select select{
-  background: none;
-  border: 1px solid var(--first-color);
-  width: 99.5%;
-  padding: 10px 20px;
-  margin-top: 20px;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  outline: none;
-  color: var(--first-color);
-  cursor: pointer;
-  background-color: var(--fourth-color);
-  font-size: 20px;
-}
-
-.select::after{
-  content: "";
-  display: block;
-  border-style: solid;
-  border-width: 15px 10px 0 10px;
-  border-color: var(--first-color) transparent transparent transparent;
-  position: absolute;
-  top: 55%;
-  right: 40px;
-  cursor: pointer;
-}*/
-
