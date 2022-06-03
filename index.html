@@ -17,11 +17,12 @@
                 <button class="btn btn__add">Add</button>
                 <button class="btn btn__swap">Completed</button>
                 <div class="select">
-                    <select>
-                        <option value="style_1.css">First Theme</option>
-                        <option value="style_2.css">Second Theme</option>
-                        <option value="style_3.css">Third Theme</option>
-                    </select>
+                    <ul class="select__wrapper">
+                        <li class="select__option select__option_selected">Current Theme</li>
+                        <li class="select__option" data-theme="style_1.css">Blue Theme</li>
+                        <li class="select__option" data-theme="style_2.css">Green Theme</li>
+                        <li class="select__option" data-theme="style_3.css">Beige Theme</li>
+                    </ul>
                 </div>
             </header>
             <main class="main">
@@ -36,5 +37,6 @@
         </div>
     </div>
     <script src="index.js"></script>
+    <script src="select.js"></script>
 </body>
 </html>

@@ -5,11 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const TASKS_COMPLETE_LIST = document.querySelector('#completeTasks');
   const BTN_SWAP = document.querySelector('.btn__swap');
   const ANIMATION_ADD = 'task__animation_add';
-  const SELECT = document.querySelector('select');
-  const THEME_LINK = document.querySelectorAll('link')[1];
   let tasks = [];
   let isActiveTasks = true;
-  let selectTheme;
 
   const createTaskTemolate = ({ id, name, flag }, className) => {
     const TASK = `
@@ -153,21 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  const setSelectTheme = () => {
-    selectTheme = SELECT.value;
-    THEME_LINK.href = selectTheme;
-    localStorage.setItem('select', selectTheme);
-  };
-
-  const getTheme = () => {
-    if (localStorage.getItem('select')) {
-      THEME_LINK.href = localStorage.getItem('select');
-      SELECT.value = localStorage.getItem('select');
-    }
-  };
-
   checkTasks();
-  getTheme();
   BTN_ADD.addEventListener('click', addTask);
   BTN_SWAP.addEventListener('click', swapTasksList);
   const EVENTS = [removeTask, editAndSaveTask, completeTask];
@@ -175,5 +158,4 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', event);
   });
   document.addEventListener('animationend', animationTasks);
-  SELECT.addEventListener('change', setSelectTheme);
 });

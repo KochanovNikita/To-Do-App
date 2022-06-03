@@ -36,7 +36,6 @@ input[type="text"]{
 }
 
 .task{
-  padding: 10px;
   box-shadow: 0px 0px 14px -3px var(--first-color);
 }
 
