@@ -17,14 +17,23 @@ const toggleSelectActive = () => {
   }) 
 }
 
+const removeSelectActive = () => {
+  OPTIONS.forEach( (option, index) => {
+    if( index != 0){
+      option.classList.remove('select__option_change')
+    }
+  })
+}
+ 
+
 const setTheme = (e) => {
   if(e.target.classList.contains('select__option_selected')){
     toggleSelectActive()
   } else if(e.target.classList.contains('select__option_change')){
       setSelectTheme( e.target.dataset.theme, e.target.innerText);
-      toggleSelectActive();
+      removeSelectActive();
   } else {
-    toggleSelectActive();
+    removeSelectActive() 
   }
 }
 
@@ -34,7 +43,4 @@ const getTheme = () => {
     THEME_LINK.href = link;
     CURRENT_OPTION.innerText = name;
   }
-};
-
-document.addEventListener('click', setTheme);
-getTheme();
+}

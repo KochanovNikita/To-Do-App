@@ -151,9 +151,10 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   checkTasks();
+  getTheme();
   BTN_ADD.addEventListener('click', addTask);
   BTN_SWAP.addEventListener('click', swapTasksList);
-  const EVENTS = [removeTask, editAndSaveTask, completeTask];
+  const EVENTS = [removeTask, editAndSaveTask, completeTask, setTheme];
   EVENTS.forEach((event) => {
     document.addEventListener('click', event);
   });
