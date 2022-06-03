@@ -24,7 +24,6 @@ const removeSelectActive = () => {
     }
   })
 }
- 
 
 const setTheme = (e) => {
   if(e.target.classList.contains('select__option_selected')){
